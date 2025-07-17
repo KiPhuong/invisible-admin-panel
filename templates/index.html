@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Viewer</title>
+</head>
+<body>
+    <h1>Order Viewer</h1>
+    <form action="/orders/view" method="GET">
+        <label for="id">Order ID:</label>
+        <input type="text" id="id" name="id" value="{{ id|default('') }}"><br><br>
+        {% if show_captcha %}
+            <img src="/captcha/image" alt="CAPTCHA Image" width="200" height="80">
+            <br>
+            <label for="captcha">Enter CAPTCHA (4 characters):</label>
+            <input type="text" id="captcha" name="captcha" value="{{ captcha|default('') }}"><br><br>
+        {% endif %}
+        <input type="submit" value="View Order">
+    </form>
+    {% if result %}
+        <div>{{ result|safe }}</div>
+    {% endif %}
+    {% if error %}
+        <div style="color: red;">Error: {{ error }}</div>
+    {% endif %}
+    <br>
+
+</body>
+</html>
